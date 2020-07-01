@@ -3,18 +3,27 @@
 //Write a function that ask the user for two numbers and return the product of them. But the challenge here is that you can't use the operator * (you can't make the product)
 //hint: multiplication is a sequence of sums
 
- //@param {number} number1
- //@param {number} number2
- //@return {number} product
-const multiplication = () => {
-  return
-}
+//@param {number} number1
+//@param {number} number2
+//@return {number} product
 
-const answer1 = multiplication()
+const num1 = parseInt( prompt('Type a number'));
+const num2 = parseInt(prompt('Type one more number'));
+let product;
+let answer = function multiplying (num1, num2) {
+let product = 0;
+for(let i = 0; i < num2; i++) {
+  product += num1
+}
+return product;
+     }
+const answer1 = answer(num1, num2)
 console.log('answer1', answer1)
 
 const htmlTarget = document.getElementById('a-1')
 htmlTarget.innerHTML = answer1
+
+
 
 
 
@@ -25,11 +34,33 @@ htmlTarget.innerHTML = answer1
 
 //@param {string}
 //@return {character} => array of characters
-vowelOrConsonant = () => {
-  return
+//vowelOrConsonant = () => {
+//return
+//}
+const str = prompt('Type any word.')
+let vowel = [];
+let consonant = [];
+vowelOrConsonant = (str) => {
+  for (let i = 0; i <= str.length; i++) {
+    if (str[i] === 'a' || str[i] === 'e' || str[i] === 'i' || str[i] === 'o' || str[i] === 'u' || str[i] === 'y') {
+      vowel.push(str[i]);
+    } else {
+      consonant.push(str[i]);
+    }
+  }
+  let product = prompt('Would you like to see vowels first?')
+
+  if (product.toLowerCase() === 'yes') {
+    return (vowel.concat(consonant));
+
+  } else {
+    return (consonant.concat(vowel));
+
+  }
+
 }
 
-const answer2 = vowelOrConsonant()
+const answer2 = vowelOrConsonant(str)
 
 const htmlTarget2 = document.getElementById('a-2')
 htmlTarget2.innerHTML = answer2
@@ -45,9 +76,33 @@ htmlTarget2.innerHTML = answer2
 //where: name, saves the name of the player. Lives, represents the remaining oportunities each time the player fails. Fail_numbers, is an array of numbers that stores the fail numbers the player has used
 
 //@return {string} win / gameOver => the string that says if the user wasted the three oportunities showing the fails numbers or the name if the player wins
-guessTheNumber  = () => {
-  return
+
+
+let player = {
+  name: '',
+  lives: 3,
+  fail_numbers: []
+};
+    let number = Math.floor(Math.random() * 40) + 10;//Math.random
+  console.log(number);
+player.name = prompt('Type a name of the player');
+
+guessTheNumber = () => {
+  while (player.lives > 0) {
+
+    userNumber = prompt('Type a number between 10 and 50');
+    userNumber = parseInt(userNumber);
+    if (userNumber === number) {
+      return (`You won, ${player.name}!`.toUpperCase());
+    } else if (userNumber !== number && player.lives > 0) {
+      alert('Try again!');
+      player.lives--;
+    }
+  }
+  return ('Game over!')
 }
+
+
 
 const answer3 = guessTheNumber()
 
@@ -63,27 +118,48 @@ htmlTarget3.innerHTML = answer3
 
 sort = () => {
 
-  var library = [
-   {
-       title:  'The Road Ahead',
-       author: 'Bill Gates',
-       libraryID: 1254
-   },
-   {
-       title: 'Walter Isaacson',
-       author: 'Steve Jobs',
-       libraryID: 4264
-   },
-   {
-       title: 'Mockingjay: The Final Book of The Hunger Games',
-       author: 'Suzanne Collins',
-       libraryID: 3245
-   }];
+  let library = [
+    {
+      title: 'The Road Ahead',
+      author: 'Bill Gates',
+      libraryID: 1254
+    },
+    {
+      title: 'Walter Isaacson',
+      author: 'Steve Jobs',
+      libraryID: 4264
+    },
+    {
+      title: 'Mockingjay: The Final Book of The Hunger Games',
+      author: 'Suzanne Collins',
+      libraryID: 3245
+    }];
+  let field = prompt('How would you like your books to be sorted by: title, author, or libraryID?');
+  function compare(a, b) {
+    if (field === 'author' || field === 'title') {
+      return b[field].length - a[field].length;
+      //return a.libraryID - b.libraryID;
+console.log(field);
+    } else {
+      return b[field] - a[field];
+    }
+  }
+  library.sort(compare);
+  let sorted = '';
+  for (let i = 0; i < library.length; i++) {
+    sorted += (library[i][field])
+    if (i < library.length - 1) {
+      sorted += '; ';
+    }
+  }
 
-  return
+  console.log(sorted);
+  return sorted;
+
 }
 
 const answer4 = sort()
 
 const htmlTarget4 = document.getElementById('a-4')
 htmlTarget4.innerHTML = answer4
+
